@@ -7,7 +7,7 @@ or
 <br>
 XAMPP
 <br>
-5. Thunder Client
+5. Thunder Client <br>
 6. drawio
 
 ## Siapkan GIT
