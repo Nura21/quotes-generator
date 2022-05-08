@@ -1,3 +1,15 @@
+## Teknologi
+1. MySQL<br>
+2. Bootstrap 4<br>
+3. PHP 8.0<br>
+4. NGINX or Apache<br>
+
+or
+<br>
+XAMPP
+
+<br>
+
 ## Siapkan GIT
 https://git-scm.com/download/win
 
@@ -13,11 +25,8 @@ git status <br>
 git commit -m "update-an kodinganlu apa" <br>
 git push -u origin master
 
-<br>
-Keterangan :  folder pertama berisikan projek sistem_penggajian_karyawan dan folder kedua berisikan projek sistem_penggajian_karyawan
 
 ## Reference 
-<br>
 https://www.positronx.io/create-simple-php-crud-rest-api-with-mysql-php-pdo/ <br>
 
 ## Algoritma
