@@ -3,12 +3,12 @@
 2. Bootstrap 4<br>
 3. PHP 8.0<br>
 4. NGINX or Apache<br>
-
 or
 <br>
 XAMPP
-
 <br>
+5. Thunder Client
+6. drawio
 
 ## Siapkan GIT
 https://git-scm.com/download/win
