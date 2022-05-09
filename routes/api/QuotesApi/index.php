@@ -3,14 +3,14 @@
     header("Content-Type: application/json; charset=UTF-8");
     
     include_once '../../../config/database.php'; //Call database
-    include_once '../../../app/Http/Controllers/QuotesController.php'; //Call Controller
-    
+    include_once '../../../app/Models/Quotes.php'; //Call Models
+
     
     
     $database = new Database(); //Deklar Object
     $db = $database->getConnection(); //Panggil fungsi
-    $items = new QuotesController($db);
-    $stmt = $items->index();
+    $items = new Quotes($db);
+    $stmt = $items->getQuotes();
     $itemCount = $stmt->rowCount();
 
     echo json_encode($itemCount);
