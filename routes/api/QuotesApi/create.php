@@ -4,21 +4,19 @@
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../../../config/database.php'; //Call database
+    include_once '../../../app/Http/Controllers/QuotesController.php'; //Call Controller
     $database = new Database();
     $db = $database->getConnection();
-    $item = new Employee($db);
+    $item = new QuotesController($db);
     $data = json_decode(file_get_contents("php://input"));
-    $item->name = $data->name;
-    $item->email = $data->email;
-    $item->age = $data->age;
-    $item->designation = $data->designation;
-    $item->created = date('Y-m-d H:i:s');
+    $item->words = $data->words;
+    $item->type = $data->type;
+    $item->author = $data->author;
     
-    if($item->createEmployee()){
-        echo 'Employee created successfully.';
+    if($item->create()){
+        echo 'Quotes created successfully.';
     } else{
-        echo 'Employee could not be created.';
+        echo 'Quotes could not be created.';
     }
 ?>

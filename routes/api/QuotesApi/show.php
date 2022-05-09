@@ -4,23 +4,21 @@
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../../../config/database.php'; //Call database
+    include_once '../../../app/Http/Controllers/QuotesController.php'; //Call Controller
     $database = new Database();
     $db = $database->getConnection();
-    $item = new Employee($db);
+    $item = new QuotesController($db);
     $item->id = isset($_GET['id']) ? $_GET['id'] : die();
   
-    $item->getSingleEmployee();
+    $item->show();
     if($item->name != null){
         // create array
         $emp_arr = array(
             "id" =>  $item->id,
-            "name" => $item->name,
-            "email" => $item->email,
-            "age" => $item->age,
-            "designation" => $item->designation,
-            "created" => $item->created
+            "words" => $item->words,
+            "type" => $item->type,
+            "author" => $item->author
         );
       
         http_response_code(200);
@@ -29,6 +27,6 @@
       
     else{
         http_response_code(404);
-        echo json_encode("Employee not found.");
+        echo json_encode("Quotes not found.");
     }
 ?>

@@ -5,20 +5,20 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
-    include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../../../config/database.php'; //Call database
+    include_once '../../../app/Http/Controllers/QuotesController.php'; //Call Controller
     
     $database = new Database();
     $db = $database->getConnection();
     
-    $item = new Employee($db);
+    $item = new QuotesController($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
     $item->id = $data->id;
     
-    if($item->deleteEmployee()){
-        echo json_encode("Employee deleted.");
+    if($item->delete()){
+        echo json_encode("Quotes deleted.");
     } else{
         echo json_encode("Data could not be deleted");
     }

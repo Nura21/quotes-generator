@@ -2,22 +2,21 @@
     class GenerateQuotes{
         // Connection
         private $conn;
+        
         // Table
         private $db_table = "generate_quotes";
+        
         // Columns
         public $id;
-        public $name;
-        public $email;
-        public $age;
-        public $designation;
-        public $created;
+        public $quotes_id;
+        
         // Db connection
         public function __construct($db){
             $this->conn = $db;
         }
         // GET ALL
         public function getGenerateQuotes(){
-            $sqlQuery = "SELECT id, name, email, age, designation, created FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT * FROM " . $this->db_table . "";
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;
@@ -27,28 +26,17 @@
             $sqlQuery = "INSERT INTO
                         ". $this->db_table ."
                     SET
-                        name = :name, 
-                        email = :email, 
-                        age = :age, 
-                        designation = :designation, 
-                        created = :created";
+                        quotes_id = :quotes_id";
         
             $stmt = $this->conn->prepare($sqlQuery);
         
             // sanitize
-            $this->name=htmlspecialchars(strip_tags($this->name));
-            $this->email=htmlspecialchars(strip_tags($this->email));
-            $this->age=htmlspecialchars(strip_tags($this->age));
-            $this->designation=htmlspecialchars(strip_tags($this->designation));
-            $this->created=htmlspecialchars(strip_tags($this->created));
+            $this->quotes_id=htmlspecialchars(strip_tags($this->quotes_id));
+            
         
             // bind data
-            $stmt->bindParam(":name", $this->name);
-            $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":age", $this->age);
-            $stmt->bindParam(":designation", $this->designation);
-            $stmt->bindParam(":created", $this->created);
-        
+            $stmt->bindParam(":quotes_id", $this->quotes_id);
+            
             if($stmt->execute()){
                return true;
             }
@@ -57,12 +45,7 @@
         // READ single
         public function getSingleGenerateQuotes(){
             $sqlQuery = "SELECT
-                        id, 
-                        name, 
-                        email, 
-                        age, 
-                        designation, 
-                        created
+                        * 
                       FROM
                         ". $this->db_table ."
                     WHERE 
@@ -73,40 +56,24 @@
             $stmt->execute();
             $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            $this->name = $dataRow['name'];
-            $this->email = $dataRow['email'];
-            $this->age = $dataRow['age'];
-            $this->designation = $dataRow['designation'];
-            $this->created = $dataRow['created'];
+            $this->quotes_id = $dataRow['quotes_id'];
         }        
         // UPDATE
         public function updateGenerateQuotes(){
             $sqlQuery = "UPDATE
                         ". $this->db_table ."
                     SET
-                        name = :name, 
-                        email = :email, 
-                        age = :age, 
-                        designation = :designation, 
-                        created = :created
+                        quotes_id = :quotes_id
                     WHERE 
                         id = :id";
         
             $stmt = $this->conn->prepare($sqlQuery);
         
-            $this->name=htmlspecialchars(strip_tags($this->name));
-            $this->email=htmlspecialchars(strip_tags($this->email));
-            $this->age=htmlspecialchars(strip_tags($this->age));
-            $this->designation=htmlspecialchars(strip_tags($this->designation));
-            $this->created=htmlspecialchars(strip_tags($this->created));
+            $this->quotes_id=htmlspecialchars(strip_tags($this->quotes_id));
             $this->id=htmlspecialchars(strip_tags($this->id));
         
             // bind data
-            $stmt->bindParam(":name", $this->name);
-            $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":age", $this->age);
-            $stmt->bindParam(":designation", $this->designation);
-            $stmt->bindParam(":created", $this->created);
+            $stmt->bindParam(":quotes_id", $this->quotes_id);
             $stmt->bindParam(":id", $this->id);
         
             if($stmt->execute()){

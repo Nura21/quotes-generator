@@ -8,7 +8,7 @@ class GenerateQuotesController extends GenerateQuotes {
     }
 
     public function create(){
-
+        //Hanya return tampilan
     }
 
     public function store(){
@@ -16,7 +16,7 @@ class GenerateQuotesController extends GenerateQuotes {
     }
 
     public function edit(){
-
+        //Hanya return tampilan tapi dengan ID
     }
 
     public function update(){

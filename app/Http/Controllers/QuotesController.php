@@ -3,9 +3,13 @@
 include_once '../../Models/Quotes.php';
 
 class QuotesController extends Quotes {
+    public function __construct($db)
+    {
+        $this->__construct($db);
+    }
     public function index(){
         try {
-            $this->getQuotes();
+            return $this->getQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }
@@ -13,7 +17,7 @@ class QuotesController extends Quotes {
 
     public function show(){ //perlu ID
         try {
-            $this->getSingleQuotes();
+            return $this->getSingleQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }
@@ -21,7 +25,7 @@ class QuotesController extends Quotes {
 
     public function create(){
         try {
-            $this->createQuotes();
+            return $this->createQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }
@@ -29,7 +33,7 @@ class QuotesController extends Quotes {
 
     public function store(){
         try {
-            $this->createQuotes();
+            return $this->createQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }
@@ -37,7 +41,7 @@ class QuotesController extends Quotes {
 
     public function edit(){ //perlu ID
         try {
-            $this->createQuotes();
+            return $this->createQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }
@@ -45,7 +49,7 @@ class QuotesController extends Quotes {
 
     public function update(){ //perlu ID
         try {
-            $this->createQuotes();
+            return $this->createQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }
@@ -53,7 +57,7 @@ class QuotesController extends Quotes {
 
     public function delete(){ //perlu ID
         try {
-            $this->createQuotes();
+            return $this->createQuotes();
         } catch (Exception $e) {
             echo 'Exception : ',  $e->getMessage(), "\n";
         }

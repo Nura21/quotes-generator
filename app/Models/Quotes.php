@@ -6,18 +6,18 @@
         private $db_table = "quote";
         // Columns
         public $id;
-        public $name;
-        public $email;
-        public $age;
-        public $designation;
-        public $created;
+        public $words;
+        public $type;
+        public $author;
+
         // Db connection
         public function __construct($db){
             $this->conn = $db;
         }
         // GET ALL
         public function getQuotes(){
-            $sqlQuery = "SELECT id, name, email, age, designation, created FROM " . $this->db_table . "";
+            // $sqlQuery = "SELECT id, words, type, author FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT * FROM  . $this->db_table . ";
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;
@@ -27,28 +27,23 @@
             $sqlQuery = "INSERT INTO
                         ". $this->db_table ."
                     SET
-                        name = :name, 
-                        email = :email, 
-                        age = :age, 
-                        designation = :designation, 
-                        created = :created";
+                        words = :words, 
+                        type = :type, 
+                        author = :author";
         
             $stmt = $this->conn->prepare($sqlQuery);
         
             // sanitize
-            $this->name=htmlspecialchars(strip_tags($this->name));
-            $this->email=htmlspecialchars(strip_tags($this->email));
-            $this->age=htmlspecialchars(strip_tags($this->age));
-            $this->designation=htmlspecialchars(strip_tags($this->designation));
-            $this->created=htmlspecialchars(strip_tags($this->created));
+            $this->words=htmlspecialchars(strip_tags($this->words));
+            $this->type=htmlspecialchars(strip_tags($this->type));
+            $this->author=htmlspecialchars(strip_tags($this->author));
+            
         
             // bind data
-            $stmt->bindParam(":name", $this->name);
-            $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":age", $this->age);
-            $stmt->bindParam(":designation", $this->designation);
-            $stmt->bindParam(":created", $this->created);
-        
+            $stmt->bindParam(":words", $this->words);
+            $stmt->bindParam(":type", $this->type);
+            $stmt->bindParam(":author", $this->author);
+            
             if($stmt->execute()){
                return true;
             }
@@ -57,12 +52,7 @@
         // READ single
         public function getSingleQuotes(){
             $sqlQuery = "SELECT
-                        id, 
-                        name, 
-                        email, 
-                        age, 
-                        designation, 
-                        created
+                        *
                       FROM
                         ". $this->db_table ."
                     WHERE 
@@ -73,40 +63,33 @@
             $stmt->execute();
             $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            $this->name = $dataRow['name'];
-            $this->email = $dataRow['email'];
-            $this->age = $dataRow['age'];
-            $this->designation = $dataRow['designation'];
-            $this->created = $dataRow['created'];
+            $this->words = $dataRow['words'];
+            $this->type = $dataRow['type'];
+            $this->author = $dataRow['author'];
+            
         }        
         // UPDATE
         public function updateQuotes(){
             $sqlQuery = "UPDATE
                         ". $this->db_table ."
                     SET
-                        name = :name, 
-                        email = :email, 
-                        age = :age, 
-                        designation = :designation, 
-                        created = :created
+                        words = :words, 
+                        type = :type, 
+                        author = :author
                     WHERE 
                         id = :id";
         
             $stmt = $this->conn->prepare($sqlQuery);
         
-            $this->name=htmlspecialchars(strip_tags($this->name));
-            $this->email=htmlspecialchars(strip_tags($this->email));
-            $this->age=htmlspecialchars(strip_tags($this->age));
-            $this->designation=htmlspecialchars(strip_tags($this->designation));
-            $this->created=htmlspecialchars(strip_tags($this->created));
+            $this->words=htmlspecialchars(strip_tags($this->words));
+            $this->type=htmlspecialchars(strip_tags($this->type));
+            $this->author=htmlspecialchars(strip_tags($this->author));
             $this->id=htmlspecialchars(strip_tags($this->id));
         
             // bind data
-            $stmt->bindParam(":name", $this->name);
-            $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":age", $this->age);
-            $stmt->bindParam(":designation", $this->designation);
-            $stmt->bindParam(":created", $this->created);
+            $stmt->bindParam(":words", $this->words);
+            $stmt->bindParam(":type", $this->type);
+            $stmt->bindParam(":author", $this->author);
             $stmt->bindParam(":id", $this->id);
         
             if($stmt->execute()){
