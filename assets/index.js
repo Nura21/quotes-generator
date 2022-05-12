@@ -47,4 +47,6 @@ function show(data) {
     //GET id words
     let words = document.getElementById("words");
     words.innerHTML ='"' + data.slip.advice +'"';
+    let adviceId = document. getElementById("adviceId");
+    adviceId.innerHTML = " "+" #"+data.slip.id;
 }
