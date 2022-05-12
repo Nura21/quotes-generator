@@ -46,5 +46,5 @@ function generate(){
 function show(data) {
     //GET id words
     let words = document.getElementById("words");
-    words.innerHTML = data.slip.advice;
+    words.innerHTML ='"' + data.slip.advice +'"';
 }
