@@ -50,3 +50,13 @@ function show(data) {
     let adviceId = document. getElementById("adviceId");
     adviceId.innerHTML = " "+" #"+data.slip.id;
 }
+
+
+// Type 2
+document.getElementById('clipboardCopy').addEventListener('click', clipboardCopy);
+async function clipboardCopy() {
+  let text = document.getElementById("words");
+  if(text.innerHTML != null){
+    await navigator.clipboard.writeText(text.innerHTML);
+  }
+}
