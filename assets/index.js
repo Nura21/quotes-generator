@@ -45,10 +45,13 @@ function generate(){
 }
 function show(data) {
     //GET id words
+    let copy = document.getElementById('clipboardCopy');
+    copy.style.display ='block';
     let words = document.getElementById("words");
     words.innerHTML ='"' + data.slip.advice +'"';
     let adviceId = document. getElementById("adviceId");
     adviceId.innerHTML = " "+" #"+data.slip.id;
+    
 }
 
 
@@ -58,5 +61,6 @@ async function clipboardCopy() {
   let text = document.getElementById("words");
   if(text.innerHTML != null){
     await navigator.clipboard.writeText(text.innerHTML);
+    alert("Text Copied!");
   }
 }
